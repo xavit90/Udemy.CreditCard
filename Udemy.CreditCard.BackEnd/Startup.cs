@@ -29,6 +29,8 @@ namespace Udemy.CreditCard.BackEnd
         {
             //Modificación para el llamado de la BD, la conexión se crea en appsettings con el nombre de "DevConnection"
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            //Para evitar problemas de dominio cruzado se modifica el startup para la parte del cors
+            services.AddCors(options => options.AddPolicy("AllowWebApp", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.AddControllers();
         }
 
@@ -39,11 +41,10 @@ namespace Udemy.CreditCard.BackEnd
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //Llamada al Cors
+            app.UseCors("AllowWebApp");
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -22,7 +22,7 @@ namespace Udemy.CreditCard.BackEnd.Models
 
         [Required]
         [Column(TypeName = "varchar(5)")]
-        public int ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(3)")]
