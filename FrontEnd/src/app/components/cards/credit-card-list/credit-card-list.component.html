@@ -1,1 +1,14 @@
-<p>credit-card-list works!</p>
+<table class="table table-sm">
+    <tr *ngFor="let card of cardService.list">
+        <td>{{ card.cardHolder }}</td>
+        <td>{{ card.cardNumber }}</td>
+        <td>{{ card.expiryDate }}</td>
+        <td>{{ card.cvc }}</td>
+        <td>
+            <i class="far fa-edit fa-lg text-info" style="cursor: pointer;" (click)="edit(card)"></i>
+        </td>
+        <td>
+            <i class="far fa-trash-alt fa-lg text-danger" style="cursor: pointer;" (click)="cardDelete(card.id)"></i>
+        </td>
+    </tr>
+</table>
